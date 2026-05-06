@@ -1,0 +1,84 @@
+<!-- ========================
+     文件：base.html
+     作用：所有页面的公共骨架
+     其他页面（index.html 等）会继承这个文件
+     ======================== -->
+
+<!-- 1. 文档声明：告诉浏览器这是 HTML5 网页 -->
+<!DOCTYPE html>
+
+<!-- 2. 网页根元素，lang="zh-CN" 表示页面内容是中文 -->
+<html lang="zh-CN">
+
+<!-- 3. head 区域：放网页的配置信息，不会直接显示在页面上 -->
+<head>
+    <!-- 设置字符编码为 UTF-8，避免中文乱码 -->
+    <meta charset="UTF-8">
+
+    <!-- 让网页在手机上也能正常缩放显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+        block title：标题插槽
+        每个子页面可以往这里填自己的标题
+        如果子页面没填，就默认显示"我的博客"
+    -->
+    <title>{% block title %}我的博客{% endblock %}</title>
+
+    <!--
+        url_for('static', filename='style.css')
+        这是 Flask 的固定写法，作用是找到 static 文件夹里的 style.css
+        相当于告诉浏览器：样式文件在 static/style.css
+    -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<!-- 4. body 区域：所有能在浏览器里看到的内容都写在这里 -->
+<body>
+
+    <!--
+        header：顶部区域，每个页面都一样
+        包含博客标题和导航菜单
+    -->
+    <header>
+        <!-- 📝 是 emoji 图标，让标题更好看 -->
+        <h1>📝 我的博客</h1>
+
+        <!-- nav：导航栏，放链接 -->
+        <nav>
+            <!--
+                <a href="/">：a 是超链接标签，href 是目标地址
+                href="/" 表示链接到首页
+                href="/create" 表示链接到写文章页面
+            -->
+            <a href="/">首页</a>
+            <a href="/create">写文章</a>
+        </nav>
+    </header>
+
+    <!--
+        main：页面的主要内容区域
+        block content 是内容插槽
+        这是整个模板最重要的"空位"
+        每个子页面往这里填不同的东西：
+
+        比如 index.html 会填：欢迎来到我的博客
+        create.html 会填：写文章的表单
+        post.html 会填：文章的正文
+    -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!--
+        footer：底部区域，每个页面都一样
+        显示版权信息
+        © 是版权符号
+    -->
+    <footer>
+        <p>© 2025 我的博客 - 用 Flask 搭建</p>
+    </footer>
+
+</body>
+</html>

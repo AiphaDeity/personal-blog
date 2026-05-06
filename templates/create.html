@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}写文章 - 我的博客{% endblock %}
+
+{% block content %}
+<h2>📝 写文章</h2>
+
+<form method="POST" action="/create">
+    <div>
+        <label for="title">文章标题：</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+
+    <div>
+        <label for="content">文章内容：</label>
+        <textarea id="content" name="content" rows="10" required></textarea>
+    </div>
+
+    <button type="submit">发布文章</button>
+</form>
+
+<p><a href="/">← 返回首页</a></p>
+{% endblock %}

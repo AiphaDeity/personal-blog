@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 
 {% block title %}{{ post.title }} - 我的博客{% endblock %}
@@ -11,4 +12,19 @@
 </article>
 
 <p><a href="/">← 返回首页</a></p>
+=======
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - 我的博客{% endblock %}
+
+{% block content %}
+<article>
+    <h2>{{ post.title }}</h2>
+    <small>发布于：{{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+    <hr>
+    <p>{{ post.content }}</p>
+</article>
+
+<p><a href="/">← 返回首页</a></p>
+>>>>>>> 452eb2019923c9d22e6fbceb5d4d08bdb743de0c
 {% endblock %}

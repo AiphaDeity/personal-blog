@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 
 {% block title %}首页 - 我的博客{% endblock %}
@@ -16,4 +17,24 @@
 {% else %}
     <p>还没有文章，<a href="/create">写一篇吧</a>。</p>
 {% endif %}
+=======
+{% extends 'base.html' %}
+
+{% block title %}首页 - 我的博客{% endblock %}
+
+{% block content %}
+<h2>📋 文章列表</h2>
+
+{% if posts %}
+    {% for post in posts %}
+    <article>
+        <h3><a href="/post/{{ post.id }}">{{ post.title }}</a></h3>
+        <p>{{ post.content[:100] }}{% if post.content|length > 100 %}...{% endif %}</p>
+        <small>发布于：{{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+    </article>
+    {% endfor %}
+{% else %}
+    <p>还没有文章，<a href="/create">写一篇吧</a>。</p>
+{% endif %}
+>>>>>>> 452eb2019923c9d22e6fbceb5d4d08bdb743de0c
 {% endblock %}
